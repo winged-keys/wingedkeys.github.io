@@ -14,15 +14,14 @@
       --bg: #eee;
       --fg: #111111;
       --muted:#555;
-      --accent:#000; /* monochrome */
+      --accent:#000;
       --radius: 999px;
     }
     @media (prefers-color-scheme: dark){
       :root{ --bg:#0b0b0b; --fg:#f5f5f5; --muted:#b3b3b3; --accent:#fff; }
     }
 
-    /* Base reset */
-    html,body{height:100%}
+    html,body{min-height:100dvh}
     *{box-sizing:border-box}
 
     body{
@@ -31,19 +30,21 @@
       background:var(--bg); color:var(--fg);
     }
 
-    /* Layout wrapper scales fluidly; comfortable gutters on all screens */
+    /* Ensure all images are fluid by default */
+    img{max-width:100%; height:auto; display:block}
+
     .wrap{
       width:100%;
-      max-width:clamp(720px, 92vw, 1100px);
+      max-width:clamp(680px, 92vw, 1040px);
       padding:clamp(20px, 4vw, 48px) clamp(16px, 4vw, 32px);
       margin-inline:auto;
       display:flex; flex-direction:column; align-items:center;
     }
 
-    header{display:flex; flex-direction:column; align-items:center; gap:clamp(12px, 2.6vw, 24px); text-align:center}
+    header{display:flex; flex-direction:column; align-items:center; gap:clamp(12px, 2.6vw, 24px); text-align:center; overflow:visible}
 
-    /* Banner image scales down, never overflows, and looks crisp on mobile */
-    .banner{ width:clamp(260px, 70vw, 680px); height:auto; display:block; object-fit:contain; }
+    /* Smaller logo on desktop; never clipped, never overflows */
+    .banner{ width:clamp(240px, 64vw, 520px); height:auto; object-fit:contain; }
 
     h1{font-weight:800; font-size:clamp(26px, 5.2vw, 44px); letter-spacing:0.3px; margin:6px 0 0}
     .tag{color:var(--muted); font-size:clamp(14px, 2.2vw, 18px);}
@@ -60,28 +61,17 @@
 
     footer{margin-top:clamp(28px, 4vw, 42px); text-align:center; color:var(--muted); font-size:clamp(12px, 1.6vw, 14px)}
 
-    /* Small phone niceties */
+    /* Small phones */
     @media (max-width:600px){
-      /* On small phones, stack buttons */
-      .cta{gap:10px; padding-bottom:18px; flex-direction:column; align-items:stretch}
-      .btn{flex:1 1 100%; text-align:center; padding:14px 16px}
-    }
-      .btn{flex:1 1 100%; text-align:center; padding:14px 16px}
-    }
-      .btn{flex:1 1 100%; text-align:center; padding:14px 16px}
+      .cta{gap:10px; padding-bottom:28px; flex-direction:column; align-items:stretch}
+      .btn{width:100%; text-align:center; padding:14px 16px}
     }
 
-    /* Large displays center vertically so the hero doesn't feel lost */
+    /* Large displays: center the hero but avoid clipping */
     @media (min-width:1024px){
-      /* Desktop: slightly smaller logo and center vertically */
-      .banner{ width:clamp(420px, 46vw, 600px) }
-      body{ display:flex; align-items:center; justify-content:center; min-height:100svh; }
-    }
-      body{ display:flex; align-items:center; justify-content:center; min-height:100svh; }
-    }
+      body{ display:flex; align-items:center; justify-content:center; }
     }
 
-    /* Motion & print */
     @media (prefers-reduced-motion: reduce){ .btn{transition:none} }
     @media print{ .btn{display:none} .wrap{padding:0} }
   </style>
