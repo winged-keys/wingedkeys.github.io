@@ -49,7 +49,7 @@
     h1{font-weight:800; font-size:clamp(26px, 5.2vw, 44px); letter-spacing:0.3px; margin:6px 0 0}
     .tag{color:var(--muted); font-size:clamp(14px, 2.2vw, 18px);}
 
-    .cta{margin-top:clamp(14px, 2.4vw, 26px); display:flex; gap:12px; flex-wrap:wrap; justify-content:center; width:100%}
+    .cta{margin-top:clamp(14px, 2.4vw, 26px); margin-bottom:clamp(20px, 4vw, 32px); display:flex; gap:12px; flex-wrap:wrap; justify-content:center; width:100%}
     .btn{border:2px solid var(--fg); color:var(--bg); background:var(--fg); padding:12px 18px; border-radius:var(--radius); text-decoration:none; font-weight:700; transition:opacity .15s ease}
     .btn:hover{opacity:.9}
     .btn.ghost{background:transparent; color:var(--fg)}
@@ -59,11 +59,20 @@
     h2{ font-size:clamp(18px, 2.4vw, 22px); margin:0 0 8px 0 }
     p{ margin:0; color:var(--muted) }
 
-    footer{margin-top:clamp(28px, 4vw, 42px); text-align:center; color:var(--muted); font-size:clamp(12px, 1.6vw, 14px)}
+    /* Card grid */
+    .cards{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:clamp(14px, 2.6vw, 24px); align-items:stretch }
+    @media (max-width:800px){ .cards{ grid-template-columns:1fr } }
+
+    .card{ background:transparent; border:1.5px solid color-mix(in oklab, var(--fg) 16%, transparent); border-radius:16px; padding:clamp(16px, 2.6vw, 24px); box-shadow:0 1px 0 color-mix(in oklab, var(--fg) 8%, transparent); transition:transform .15s ease, box-shadow .15s ease }
+    .card:hover{ transform:translateY(-1px); box-shadow:0 6px 14px -8px color-mix(in oklab, var(--fg) 24%, transparent) }
+    .card h3{ margin:0 0 8px 0; font-size:clamp(18px, 2.2vw, 20px) }
+    .card p{ color:var(--muted) }
+
+    footer{margin-top:clamp(32px, 5vw, 56px); text-align:center; color:var(--muted); font-size:clamp(12px, 1.6vw, 14px)}
 
     /* Small phones */
     @media (max-width:600px){
-      .cta{gap:10px; padding-bottom:28px; flex-direction:column; align-items:stretch}
+      .cta{gap:10px; padding-bottom:32px; flex-direction:column; align-items:stretch}
       .btn{width:100%; text-align:center; padding:14px 16px}
     }
 
@@ -83,21 +92,20 @@
       <img class="banner" src="banner.png" alt="Winged Keys wordmark banner" loading="eager" decoding="async" />
       <div class="cta">
         <a class="btn" href="mailto:contact@wingedkeys.com">Contact</a>
-        <a class="btn ghost" href="#services">Services</a>
-        <a class="btn ghost" href="#about">About</a>
       </div>
     </header>
 
     <main>
-      <section id="services">
-        <h2>What We Do</h2>
-        <p>Fractional CTO Service, Architecture reviews, rapid prototyping, cloud migrations, observability, and performance tuning. Engagements from advisory to hands‑on delivery.</p>
-      </section>
-
-      <section id="about">
-        <h2>About</h2>
-        <p>Winged Keys helps teams unlock gnarly systems problems without the buzzword circus. Secure, pragmatic, and shipping‑oriented.</p>
-      </section>
+      <div class="cards">
+        <article id="services" class="card">
+          <h3>What We Do</h3>
+          <p>Fractional CTO engagements, architecture reviews, rapid prototyping, cloud migrations, observability, and performance tuning. From pragmatic advisory to hands‑on delivery.</p>
+        </article>
+        <article id="about" class="card">
+          <h3>About</h3>
+          <p>Winged Keys helps teams unlock gnarly systems problems without the buzzword circus. Security‑minded, developer‑friendly, and relentlessly shipping‑oriented.</p>
+        </article>
+      </div>
     </main>
 
     <footer>
